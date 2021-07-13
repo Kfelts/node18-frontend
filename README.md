@@ -4,6 +4,8 @@
 
 # Node.js frontend development with Chrome Headless tests
 
+This is a fork of [https://github.com/tiangolo/node-frontend](https://github.com/tiangolo/node-frontend) with some updates.
+
 This Docker image simplifies the process of creating a full Node.js environment for frontend development with multistage building.
 
 It includes all the dependencies for Puppeteer, so you can just `npm install puppeteer` and it should work.

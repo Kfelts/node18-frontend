@@ -3,7 +3,7 @@
 set -e
 set -x
 
-echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
+echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USER" --password-stdin
 
 docker build -t antonapetrov/node-frontend:14 .
 
