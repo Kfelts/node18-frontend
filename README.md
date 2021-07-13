@@ -1,8 +1,6 @@
-[![Build Status](https://travis-ci.org/tiangolo/node-frontend.svg?branch=master)](https://travis-ci.org/tiangolo/node-frontend)
-
 ## Supported tags and respective `Dockerfile` links
 
-* [`10`, `latest` _(Dockerfile)_](https://github.com/tiangolo/node-frontend/blob/master/Dockerfile)
+* [`14`, `latest` _(Dockerfile)_](https://github.com/anton-petrov/node-frontend/blob/master/Dockerfile)
 
 # Node.js frontend development with Chrome Headless tests
 
@@ -135,7 +133,7 @@ RUN npm run build -- --output-path=./dist/out --configuration $configuration
 ...
 
 # Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
-FROM nginx:1.15
+FROM nginx:1.20.1
 
 ...
 ```
@@ -184,7 +182,7 @@ RUN npm run build -- --output-path=./dist/out --configuration $configuration
 
 
 # Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
-FROM nginx:1.15
+FROM nginx:1.20.1
 
 COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
 
