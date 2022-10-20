@@ -1,22 +1,16 @@
 ## Supported tags and respective `Dockerfile` links
 
-* [`14`, `latest` _(Dockerfile)_](https://github.com/anton-petrov/node-frontend/blob/master/Dockerfile)
+* [`18`, `latest` _(Dockerfile)_](https://github.com/kfelts/node18-frontend/blob/master/Dockerfile)
 
 # Node.js frontend development with Chrome Headless tests
 
-This is a fork of [https://github.com/tiangolo/node-frontend](https://github.com/tiangolo/node-frontend) with some updates.
+This is a fork of [https://github.com/tiangolo/node-frontend](https://github.com/tiangolo/node-frontend) and [https://github.com/anton-petrov/node-frontend](https://github.com/anton-petrov/node-frontend) with some updates.
 
 This Docker image simplifies the process of creating a full Node.js environment for frontend development with multistage building.
 
 It includes all the dependencies for Puppeteer, so you can just `npm install puppeteer` and it should work.
 
 It also includes a default Nginx configuration for your frontend application, so in multi-stage Docker builds you can just copy it to an Ngnix "stage" and have an always freshly compiled production ready frontend Docker image for deployment.
-
-It is derivated from this article I wrote:
-
-> Angular in Docker with Nginx, supporting configurations / environments, built with multi-stage Docker builds and testing with Chrome Headless
-
- [in Medium](https://medium.com/@tiangolo/angular-in-docker-with-nginx-supporting-environments-built-with-multi-stage-docker-builds-bb9f1724e984), and [in GitHub](https://github.com/tiangolo/medium-posts/tree/master/angular-in-docker)
 
  ## How to use
 
@@ -117,7 +111,7 @@ RUN npm run build
 ...
 ```
 
-* If you need to pass build time arguments (for example in Angular), modify the previous instruction using the previously declared `ARG`, e.g.:
+* If you need to pass build time arguments, modify the previous instruction using the previously declared `ARG`, e.g.:
 
 ```Dockerfile
 ...
@@ -135,7 +129,7 @@ RUN npm run build -- --output-path=./dist/out --configuration $configuration
 ...
 
 # Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
-FROM nginx:1.20.1
+FROM nginx:1.22.1
 
 ...
 ```
@@ -166,7 +160,7 @@ COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
 
 ```Dockerfile
 # Stage 0, "build-stage", based on Node.js, to build and compile the frontend
-FROM tiangolo/node-frontend:10 as build-stage
+FROM kfelts/node-frontend:18 as build-stage
 
 WORKDIR /app
 
@@ -184,7 +178,7 @@ RUN npm run build -- --output-path=./dist/out --configuration $configuration
 
 
 # Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
-FROM nginx:1.20.1
+FROM nginx:1.22.1
 
 COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
 
