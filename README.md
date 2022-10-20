@@ -1,6 +1,6 @@
 ## Supported tags and respective `Dockerfile` links
 
-* [`18`, `latest` _(Dockerfile)_](https://github.com/kfelts/node18-frontend/blob/master/Dockerfile)
+* [`18`, `latest` _(Dockerfile)_](https://github.com/Kfelts/node18-frontend/blob/master/Dockerfile))
 
 # Node.js frontend development with Chrome Headless tests
 
